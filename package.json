@@ -2,7 +2,7 @@
   "name":"electron",
   "version":"0.1.0",
   "main":"./public/electron.js",
-  "author": "Zakaria Kerkeb",
+  "author": "Czadowski Maksymilian",
   "description": "Mettez la description de l'app ici",
   "homepage":"./",
   "private":true,
