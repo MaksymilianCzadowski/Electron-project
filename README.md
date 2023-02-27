@@ -1,5 +1,5 @@
 # Objectif :
-Créer une application de chat en temps réel qui permet à des utilisateurs de communiquer de manière efficace et sécurisée. (un peu comme discord)
+Créer une application de chat en temps réel qui permet à des utilisateurs de communiquer de manière efficace et sécurisée. (discord like)
 
 # Fonctionnalités :
 
