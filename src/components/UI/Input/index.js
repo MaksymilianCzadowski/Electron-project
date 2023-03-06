@@ -10,11 +10,15 @@ const Index = ({
   placeHolder,
   label,
   disabled,
+  minLength,
+  maxLength,
 }) => {
   return (
     <Wrapper>
       <LabelDiv>{label && <Label>{label}</Label>}</LabelDiv>
       <Input
+        minLength={minLength}
+        maxLength={maxLength}
         type={type}
         name={name}
         required={required}
@@ -42,6 +46,8 @@ const Input = styled.input`
     height: 100%;
     border: none;
     background-color: #1E1F22;
+    minLength: ${props => props.minLength || 'none'};
+    maxLength: ${props => props.maxLength || 'none'};
     padding: 10px 0;
     border-radius: 3px;
     text-indent: 10px;
