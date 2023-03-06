@@ -32,6 +32,7 @@ const Register = () => {
         });
         console.log("Document written with ID: ", docRef.id);
         setLoader(false);
+        navigate("/")
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -51,6 +52,7 @@ const Register = () => {
           <Input
             label="Email"
             type="email"
+            maxLength="50"
             onChange={(e) => setEmail(e.target.value)}
             disabled={loader}
           />
@@ -58,6 +60,7 @@ const Register = () => {
           <Input
             label="Username"
             type="text"
+            maxLength="20"
             onChange={(e) => setUsername(e.target.value)}
             disabled={loader}
           />
@@ -65,6 +68,7 @@ const Register = () => {
           <Input
             label="Password"
             type="password"
+            minLength="6" 
             onChange={(e) => setPassword(e.target.value)}
             disabled={loader}
           />
