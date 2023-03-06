@@ -13,7 +13,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { register, token, isLoadind, isError, errorMessage } = useAuth(email, password, username);
+  const { register, token, isLoadind, isError } = useAuth(email, password, username);
 
   const handleSubmit = (e) => {
     e.preventDefault();

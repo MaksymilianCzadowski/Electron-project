@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -9,7 +9,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { firestore } from "../firebase_setup/firebase";
 
 
-const useAuth = (email, password, username) => {
+const useAuth = (email, password, username = null) => {
   const [isLoadind, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);

@@ -10,13 +10,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, token, isLoadind, isError, errorMessage } = useAuth(
+  const { login, token, isLoadind, isError } = useAuth(
     email,
-    password,
-    username
+    password
   );
 
   const handleSubmit = (e) => {
