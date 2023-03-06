@@ -30,7 +30,7 @@ const Register = () => {
 
   return (
     <Wrapper>
-      <h2>Create an account</h2>
+      <h2>Sign in</h2>
       <FormContainer>
         {isLoadind && <h3>Loading...</h3> }
         <form className="boxFormRegister" onSubmit={(e) => handleSubmit(e)}>
@@ -60,6 +60,7 @@ const Register = () => {
 
           <Button type="submit" title="Register" />
         </form>
+        {isError && <h3>Somethong went wrong</h3>}
       </FormContainer>
     </Wrapper>
   );

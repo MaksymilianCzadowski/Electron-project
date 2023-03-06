@@ -1,13 +1,22 @@
+import Cookies from "js-cookie";
 import React from "react";
-import Layout from "../components/layout/MainLayout";
 import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const { logout} = useAuth();
+
+  const handleClick = () => {
+    logout();
+    Cookies.remove("token");
+    navigate("/login");
+  };
+
   return (
     <div>
-      <Layout>
-        <Link to="/register">Register</Link>
-      </Layout>
+      <Link to="/register">Register</Link>
+      <button onClick={handleClick}>Logout</button>
     </div>
   );
 };

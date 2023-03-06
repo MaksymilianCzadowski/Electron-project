@@ -3,9 +3,11 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { firestore } from "../firebase_setup/firebase";
+
 
 const useAuth = (email, password, username) => {
   const [isLoadind, setIsLoading] = useState(false);
@@ -62,6 +64,19 @@ const useAuth = (email, password, username) => {
     }
   };
 
+  const logout = async () => {
+    setIsLoading(true);
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        setIsLoading(false);
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        setIsLoading(false);
+      });
+  };
+
   const generateToken = async () => {
     const auth = getAuth();
     //voir à mettre en secure et httpOnly si possible
@@ -69,7 +84,7 @@ const useAuth = (email, password, username) => {
     setToken(token);
   };
 
-  return { login, register, token, isLoadind, isError, errorMessage };
+  return { login, register, logout, token, isLoadind, isError, errorMessage };
 };
 
 export default useAuth;
