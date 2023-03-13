@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import { firestore } from "../firebase_setup/firebase";
+import Cookies from "js-cookie";
 
 
 const useAuth = (email, password, username = null) => {
@@ -19,12 +20,9 @@ const useAuth = (email, password, username = null) => {
     setIsLoading(true);
     try {
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, password).then(
-        (userCredential) => {
-          generateToken();
-          setIsLoading(false);
-        }
-      );
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      generateToken();
+      setIsLoading(false);
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
@@ -70,6 +68,7 @@ const useAuth = (email, password, username = null) => {
     signOut(auth)
       .then(() => {
         setIsLoading(false);
+        Cookies.remove("token");
         // Sign-out successful.
       })
       .catch((error) => {

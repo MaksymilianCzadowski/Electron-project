@@ -1,16 +1,26 @@
-import Cookies from "js-cookie";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import { useSelector, useDispatch } from 'react-redux'
+import { handleLogout } from '../slices/userSlice';
+
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { logout} = useAuth();
+  const { user } = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (user) {
+      console.log(user);
+    }
+  }, [user])
 
   const handleClick = () => {
     logout();
-    Cookies.remove("token");
-    navigate("/login");
+    dispatch(handleLogout())
+    navigate("/");
   };
 
   return (
