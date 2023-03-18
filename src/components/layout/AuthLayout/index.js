@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Navigation from "../../Navigation";
 
 const Index = ({ children }) => {
   const imgSrc = "/assets/images/background/discord-background.png";

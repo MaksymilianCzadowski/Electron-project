@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Navigation from "../../Navigation";
+import PublicChannels from "../../sideBar/PublicChannels/Index"
+
+
 
 const Index = ({ children }) => {
   return (
     <Wrapper>
       <Container>
-        {/* <Navigation /> */}
+        <PublicChannels />
         {children}
       </Container>
     </Wrapper>
@@ -24,6 +26,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   background-color: #313338;
+  display: flex;
 `;
 
 export default Index;
