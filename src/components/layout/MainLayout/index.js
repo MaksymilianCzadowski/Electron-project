@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import PublicChannels from "../../sideBar/PublicChannels/Index"
-
-
+import Selector from "../../sideBar/Selector/Index";
+import PublicChannels from "../../sideBar/PublicChannels/Index";
+import PrivateChannels from "../../sideBar/PrivateChannels/Index";
+import { useSelector } from "react-redux";
 
 const Index = ({ children }) => {
+  const { menu } = useSelector((state) => state.menu);
+
+  useEffect(() => {
+    if (menu) {
+      console.log("menu", menu);
+    }
+  }, [menu]);
+
   return (
     <Wrapper>
       <Container>
-        <PublicChannels />
+        <Selector />
+        {menu === "home" ?
+          <PrivateChannels />
+          :
+          <PublicChannels />
+        }
         {children}
       </Container>
     </Wrapper>
