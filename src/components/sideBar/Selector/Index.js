@@ -24,11 +24,30 @@ const Index = () => {
             {selectedOption === "home" && <Indicator />}
           </MainButton>
           <hr />
+          {/* TODO: fetch lite des serveurs */}
           <MainButton selected={selectedOption === "autre"} onClick={() => handleClick("autre")}>
             <SvgWrapper>
               <Image xlinkHref={homeSvgSrc} alt="Home icon" />
             </SvgWrapper>
             {selectedOption === "autre" && <Indicator />}
+          </MainButton>
+          <MainButton selected={selectedOption === "autre2"} onClick={() => handleClick("autre2")}>
+            <SvgWrapper>
+              <Image xlinkHref={homeSvgSrc} alt="Home icon" />
+            </SvgWrapper>
+            {selectedOption === "autre2" && <Indicator />}
+          </MainButton>
+          <MainButton selected={selectedOption === "autre3"} onClick={() => handleClick("autre3")}>
+            <SvgWrapper>
+              <Image xlinkHref={homeSvgSrc} alt="Home icon" />
+            </SvgWrapper>
+            {selectedOption === "autre3" && <Indicator />}
+          </MainButton>
+          <MainButton selected={selectedOption === "autre4"} onClick={() => handleClick("autre4")}>
+            <SvgWrapper>
+              <Image xlinkHref={homeSvgSrc} alt="Home icon" />
+            </SvgWrapper>
+            {selectedOption === "autre4" && <Indicator />}
           </MainButton>
         </List>
       </Wrapper>
@@ -37,7 +56,7 @@ const Index = () => {
 };
 
 const Container = styled.div`
-  width: 65px;
+  width: 72px;
   background-color: #1e1f22;
   border-radius: 3px;
 `;
@@ -62,8 +81,8 @@ const MainButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: ${({ selected }) => selected ? "25%" : "50%"};
   margin-bottom: 10px;
   cursor: pointer;

@@ -8,12 +8,6 @@ import { useSelector } from "react-redux";
 const Index = ({ children }) => {
   const { menu } = useSelector((state) => state.menu);
 
-  useEffect(() => {
-    if (menu) {
-      console.log("menu", menu);
-    }
-  }, [menu]);
-
   return (
     <Wrapper>
       <Container>
