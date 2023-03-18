@@ -5,9 +5,14 @@ import Input from "../../components/UI/Input";
 import styled from "styled-components";
 import useAuth from "../../hooks/useAuth";
 import Cookies from "js-cookie";
+import { fetchUser } from "../../utils/user";
+import { useDispatch } from "react-redux";
+import { handleLogin } from "../../slices/userSlice";
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -27,9 +32,14 @@ const Register = () => {
   useEffect(() => {
     if (token) {
       Cookies.set("token", token);
-      navigate("/home");
+      fetchUser(email).then((userData) => {
+        dispatch(handleLogin(userData));
+        navigate("/home");
+      }).catch((error) => {
+        console.log(error);
+      });
     }
-  }, [navigate, token]);
+  }, [dispatch, email, navigate, token]);
 
   return (
     <Wrapper>

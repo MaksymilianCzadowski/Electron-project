@@ -11,13 +11,7 @@ const Home = () => {
   const { logout} = useAuth();
   const { user } = useSelector(state => state.user);
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  }, [user])
-
-  const handleClick = () => {
+  const handleClickLogout = () => {
     logout();
     dispatch(handleLogout())
     navigate("/");
@@ -25,8 +19,7 @@ const Home = () => {
 
   return (
     <div>
-      <Link to="/register">Register</Link>
-      <button onClick={handleClick}>Logout</button>
+      <button onClick={handleClickLogout}>Logout</button>
     </div>
   );
 };
