@@ -1,6 +1,6 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./config/router";
-import Layout from "./components/layout/MainLayout";
+import MainLayout from "./components/layout/MainLayout";
 import AuthLayout from "./components/layout/AuthLayout";
 import { useSelector } from "react-redux";
 
@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       {isLogged ? (
-        <Layout>
+        <MainLayout>
           <RouterProvider router={router} />
-        </Layout>
+        </MainLayout>
       ) : (
         <AuthLayout>
           <RouterProvider router={router} />

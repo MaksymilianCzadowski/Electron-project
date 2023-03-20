@@ -13,7 +13,9 @@ const Index = ({ children }) => {
       <Container>
         <Selector />
         {menu === "home" ?
-          <PrivateChannels />
+          <PrivateChannels >
+            
+          </PrivateChannels>
           :
           <PublicChannels />
         }
