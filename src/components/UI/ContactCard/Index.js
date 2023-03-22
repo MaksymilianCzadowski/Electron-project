@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Index = ({isSelected, handleClick, pseudo, ProfileImgSrc}) => {
-    const imgSrc = ProfileImgSrc || '/assets/svg/Discord_Logo_sans_texte.svg';
+const Index = ({isSelected, user, onClick}) => {
+    const imgSrc = user.profile_picture || '/assets/svg/Discord_Logo_sans_texte.svg';
     return (
-        <Container isSelected={isSelected}>
+        <Container isSelected={isSelected} onClick={onClick}>
             <ProfileImgDiv>
                 <ProfileImg src={imgSrc} />
             </ProfileImgDiv>
             <NameDiv>
-                <Name isSelected={isSelected}>{pseudo}</Name>
+                <Name isSelected={isSelected}>{user.username}</Name>
             </NameDiv>
         </Container>
     );

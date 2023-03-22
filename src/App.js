@@ -5,8 +5,8 @@ import AuthLayout from "./components/layout/AuthLayout";
 import { useSelector } from "react-redux";
 
 function App() {
-  // const { isLogged } = useSelector((state) => state.user);
-  const  isLogged  = true;
+  const { isLogged } = useSelector((state) => state.user);
+  // const  isLogged  = true;
  
 
   return (

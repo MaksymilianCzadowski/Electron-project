@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import ContactCard from "../../UI/ContactCard/Index";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { handleLogout } from "../../../slices/userSlice";
+import UserList from "../../UserList";
 
 const Index = ({children}) => {
   const dispatch = useDispatch();
@@ -12,6 +12,7 @@ const Index = ({children}) => {
 
 //   const navigate = useNavigate();
 
+// TODO: faire un logout (faire un router quand on est pas login et un pour les personnes login)
   const { user } = useSelector((state) => state.user);
 
   const handleClickLogout = () => {
@@ -25,10 +26,7 @@ const Index = ({children}) => {
       <Wrapper>
         <p>Private Messages</p>
         {/* TODO: fetch liste des amis*/}
-        <List>
-          <ContactCard isSelected={true} pseudo="Maks" />
-          <ContactCard isSelected={false} pseudo="Maks" />
-        </List>
+        <UserList currentUser={user} />
       </Wrapper>
 
       {/* <button onClick={handleClickLogout}>Logout</button> */}
