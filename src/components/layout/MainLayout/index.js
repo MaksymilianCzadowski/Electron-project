@@ -26,17 +26,21 @@ const Index = ({ children }) => {
 };
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
+  // overflow: hidden;
 `;
 
 const Container = styled.div`
   width: 100%;
   background-color: #313338;
   display: flex;
+  height: 100%;
 `;
 
 export default Index;

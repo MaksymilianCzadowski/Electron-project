@@ -68,10 +68,10 @@ const List = styled.ul`
 `;
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding-inline: 10px;
 `;
 
 const MainButton = styled.button`

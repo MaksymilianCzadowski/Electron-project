@@ -40,10 +40,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding-inline: 10px;
 `;
 
 const List = styled.ul`

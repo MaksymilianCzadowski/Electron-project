@@ -4,6 +4,7 @@ import MainLayout from "./components/layout/MainLayout";
 import AuthLayout from "./components/layout/AuthLayout";
 import { useSelector } from "react-redux";
 import { initializeApp } from 'firebase/app';
+import styled from "styled-components";
 
 function App() {
   const { isLogged } = useSelector((state) => state.user);
@@ -20,7 +21,7 @@ function App() {
 
   const app = initializeApp(firebaseConfig);
   return (
-    <>
+    <Wrapper>
       {isLogged ? (
         <MainLayout>
           <RouterProvider router={router} />
@@ -30,8 +31,13 @@ function App() {
           <RouterProvider router={router} />
         </AuthLayout>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 
 export default App;
