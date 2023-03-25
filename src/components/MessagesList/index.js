@@ -13,7 +13,7 @@ const MessageList = ({ messages }) => {
   return (
     <Container>
       {messages.map((message) => (
-        <Message key={message.id}>{message.text}</Message>
+        <Message key={message.uid}>{message.text}</Message>
       ))}
       <div ref={messagesEndRef} />
     </Container>

@@ -6,33 +6,47 @@ import {
   orderBy,
   limit,
   onSnapshot,
+  doc,
   addDoc,
   serverTimestamp,
 } from "firebase/firestore";
 import { firestore } from "../../firebase_setup/firebase";
 import Input from "../UI/Input";
 import MessageList from "../MessagesList";
+import { useSelector } from "react-redux";
 
 const Index = ({ user }) => {
+  const actualConversation = useSelector(
+    (state) => state.user.actualConversation
+  );
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { id, username, profil_picture } = user;
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const messagesRef = collection(firestore, "messages");
-    const q = query(messagesRef, orderBy("createdAt"), limit(100));
+    if (actualConversation) {
+      console.log("chanel conversation", actualConversation);
+      const conversationRef = collection(firestore, "conversations");
+      const conversationDocRef = doc(conversationRef, actualConversation);
+      const messageRef = collection(conversationDocRef, "messages");
+      const q = query(messageRef, orderBy("createdAt"), limit(100));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const messagesData = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setMessages(messagesData);
+      });
+      return unsubscribe;
+    }
+  }, [actualConversation]);
 
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const messagesData = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setMessages(messagesData);
-    });
-
-    return unsubscribe;
-  }, []);
+  useEffect(() => {
+    if (messages) {
+      console.log("messages", messages);
+    }
+  }, [messages]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -46,11 +60,15 @@ const Index = ({ user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("submitting", newMessage);
-    addDoc(collection(firestore, "messages"), {
+    const conversationRef = doc(firestore, "conversations", actualConversation);
+    const messageRef = collection(conversationRef, "messages");
+    await addDoc(messageRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
-      uid: id,
-      username,
+      user: {
+        uid: id,
+        username,
+      },
     });
     setNewMessage("");
   };

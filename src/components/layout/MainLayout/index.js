@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Selector from "../../sideBar/Selector/Index";
 import PublicChannels from "../../sideBar/PublicChannels/Index";
