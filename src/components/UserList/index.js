@@ -13,6 +13,7 @@ import {
   updateDoc,
   query,
   where,
+  onSnapshot,
   getDocs,
 } from "firebase/firestore";
 import { fetchConversionId } from "../../utils/user";
@@ -24,6 +25,24 @@ const Index = () => {
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const { user: currentUser } = useSelector((state) => state.user);
+  const [privateConversations, setPrivateConversations] = useState([]);
+
+  // TODO: snapshot sur les conversations de l'utilisateur
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     const userRef = collection(firestore, "users");
+  //     const q = query(userRef, where("id", "==", currentUser.id));
+  //     const unsubscribe = onSnapshot(q, (querySnapshot) => {
+  //       console.log("querySnapshot", querySnapshot);
+  //       const userData = querySnapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }));
+  //       dispatch(handleUpdateUser(userData[0]));
+  //     });
+  //     return unsubscribe;
+  //   }
+  // }, [currentUser, dispatch]);
 
   useEffect(() => {
     fetchData();
@@ -35,7 +54,7 @@ const Index = () => {
       const updatedDocuments = data.filter((doc) => doc.id !== currentUser.id);
       setUsers(updatedDocuments);
     }
-  }, [data]);
+  }, [data, currentUser]);
 
   useEffect(() => {
     console.log("conversations", currentUser.conversations);

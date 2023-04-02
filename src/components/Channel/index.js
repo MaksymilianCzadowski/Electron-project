@@ -73,12 +73,14 @@ const Index = ({ user }) => {
       <MessageList messages={messages} />
       <DivInput>
         <Form onSubmit={(e) => handleSubmit(e)}>
+          { actualConversation && 
           <Input
             type="text"
             required={true}
             onChange={(e) => setNewMessage(e.target.value)}
             value={newMessage}
           />
+           }
         </Form>
       </DivInput>
     </Container>
@@ -89,7 +91,6 @@ const DivInput = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: green;
   padding: 10px;
 `;
 
