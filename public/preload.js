@@ -7,4 +7,11 @@ const { contextBridge } = require("electron");
 // They'll be accessible at "window.versions".
 process.once("loaded", () => {
   contextBridge.exposeInMainWorld("versions", process.versions);
+  contextBridge.exposeInMainWorld("electron", {
+    alertNotification: (sender, content) => {
+      new Notification(`You just receive new message from ${sender}`, {
+        body: content,
+      });
+    }
+  });
 });
