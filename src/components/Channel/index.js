@@ -26,27 +26,22 @@ const Index = ({ user }) => {
 
   useEffect(() => {
     if (actualConversation) {
-      console.log("chanel conversation", actualConversation);
       const conversationRef = collection(firestore, "conversations");
       const conversationDocRef = doc(conversationRef, actualConversation);
       const messageRef = collection(conversationDocRef, "messages");
       const q = query(messageRef, orderBy("createdAt"), limit(100));
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const messagesData = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
+        const messagesData = querySnapshot.docs
+          .filter((doc) => doc.data().createdAt) // Vérifie si la propriété createdAt est définie
+          .map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
         setMessages(messagesData);
       });
       return unsubscribe;
     }
   }, [actualConversation]);
-
-  useEffect(() => {
-    if (messages) {
-      console.log("messages", messages);
-    }
-  }, [messages]);
 
   useEffect(() => {
     if (messagesEndRef.current) {

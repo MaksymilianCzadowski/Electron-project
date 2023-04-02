@@ -46,10 +46,4 @@ const Wrapper = styled.div`
   padding-inline: 10px;
 `;
 
-const List = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
 export default Index;

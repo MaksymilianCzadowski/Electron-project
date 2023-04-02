@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
+import Message from "../UI/Message";
 
 const MessageList = ({ messages }) => {
   const messagesEndRef = useRef(null);
@@ -7,13 +8,16 @@ const MessageList = ({ messages }) => {
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "instant" });
+      console.log(messages);
     }
   }, [messages]);
 
   return (
     <Container>
       {messages.map((message) => (
-        <Message key={message.uid}>{message.text}</Message>
+        <MessageContainer>
+          <Message key={message.id} message={message} />
+        </MessageContainer>
       ))}
       <div ref={messagesEndRef} />
     </Container>
@@ -25,8 +29,13 @@ const Container = styled.div`
   overflow-y: scroll;
 `;
 
-const Message = styled.div`
-  padding: 10px;
+const MessageContainer = styled.div`
+  width: 100%;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 17px;
 `;
 
 export default MessageList;
