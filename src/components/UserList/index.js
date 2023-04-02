@@ -98,6 +98,29 @@ const Index = () => {
         .catch((error) => {
           console.log(error);
         });
+
+      // add the conversation to the selected user
+      const q2 = query(userRef, where("id", "==", user.id));
+
+      getDocs(q2)
+        .then((querySnapshot) => {
+          querySnapshot.forEach((document) => {
+            const userRef = doc(firestore, "users", document.id);
+            const currentUser = document.data();
+            updateDoc(userRef, {
+              conversations: [...currentUser.conversations, newConversation],
+            });
+            const updatedCurrentUser = {
+              ...currentUser,
+              conversations: [...currentUser.conversations, newConversation],
+            };
+            dispatch(handleUpdateUser(updatedCurrentUser));
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        }
+      );
     }
   };
 
