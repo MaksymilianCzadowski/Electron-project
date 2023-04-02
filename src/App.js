@@ -1,26 +1,32 @@
 import { RouterProvider } from "react-router-dom";
 import router from "./config/router";
-import Layout from "./components/layout/MainLayout";
+import MainLayout from "./components/layout/MainLayout";
 import AuthLayout from "./components/layout/AuthLayout";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 function App() {
   const { isLogged } = useSelector((state) => state.user);
- 
+  // const  isLogged  = true;
 
   return (
-    <>
+    <Wrapper>
       {isLogged ? (
-        <Layout>
+        <MainLayout>
           <RouterProvider router={router} />
-        </Layout>
+        </MainLayout>
       ) : (
         <AuthLayout>
           <RouterProvider router={router} />
         </AuthLayout>
       )}
-    </>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+`;
 
 export default App;

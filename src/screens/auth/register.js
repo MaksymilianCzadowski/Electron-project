@@ -73,7 +73,7 @@ const Register = () => {
 
           <Button type="submit" title="Register" />
           <HaveAccountDiv>
-            <HaveAccountLink onClick={() => navigate("/login")}>
+            <HaveAccountLink onClick={() => navigate("/")}>
               Already have an account?
             </HaveAccountLink>
           </HaveAccountDiv>
