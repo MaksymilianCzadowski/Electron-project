@@ -101,6 +101,10 @@ const Index = () => {
 
       // add the conversation to the selected user
       const q2 = query(userRef, where("id", "==", user.id));
+      const newConversationForSelectedUser = {
+        id : currentUser.id,
+        username : currentUser.username,
+      }
 
       getDocs(q2)
         .then((querySnapshot) => {
@@ -108,11 +112,11 @@ const Index = () => {
             const userRef = doc(firestore, "users", document.id);
             const currentUser = document.data();
             updateDoc(userRef, {
-              conversations: [...currentUser.conversations, newConversation],
+              conversations: [...currentUser.conversations, newConversationForSelectedUser],
             });
             const updatedCurrentUser = {
               ...currentUser,
-              conversations: [...currentUser.conversations, newConversation],
+              conversations: [...currentUser.conversations, newConversationForSelectedUser],
             };
             dispatch(handleUpdateUser(updatedCurrentUser));
           });
