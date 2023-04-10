@@ -38,6 +38,7 @@ const Index = ({ user }) => {
             ...doc.data(),
           }));
         setMessages(messagesData);
+      
       });
       return unsubscribe;
     }
@@ -70,7 +71,7 @@ const Index = ({ user }) => {
 
   return (
     <Container>
-      <MessageList messages={messages} />
+      <MessageList user={user} messages={messages} />
       <DivInput>
         <Form onSubmit={(e) => handleSubmit(e)}>
           { actualConversation && 

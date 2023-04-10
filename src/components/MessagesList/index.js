@@ -1,16 +1,27 @@
 import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import Message from "../UI/Message";
+import { useSelector } from "react-redux";
 
-const MessageList = ({ messages }) => {
+const MessageList = ({ messages, user }) => {
+  const { alertNotification } = window.electron;
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "instant" });
       console.log(messages);
+
     }
   }, [messages]);
+
+  useEffect(() => {
+
+    const lastMessage = messages[messages.length - 1];
+    if(lastMessage && lastMessage.user.username !== user.username){
+      alertNotification(lastMessage.user.username, lastMessage.text);
+    }
+  }, [user, messages])
 
   return (
     <Container>
