@@ -129,15 +129,10 @@ const Index = () => {
         .then((querySnapshot) => {
           querySnapshot.forEach((document) => {
             const userRef = doc(firestore, "users", document.id);
-            const currentUser = document.data();
+            const selectedUser = document.data();
             updateDoc(userRef, {
-              conversations: [...currentUser.conversations, newConversationForSelectedUser],
+              conversations: [...selectedUser.conversations, newConversationForSelectedUser],
             });
-            const updatedCurrentUser = {
-              ...currentUser,
-              conversations: [...currentUser.conversations, newConversationForSelectedUser],
-            };
-            dispatch(handleUpdateUser(updatedCurrentUser));
           });
         })
         .catch((error) => {
