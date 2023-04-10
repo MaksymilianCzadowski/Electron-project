@@ -18,3 +18,8 @@ Créer une application de chat en temps réel qui permet à des utilisateurs de 
     Electron.js
     React.js
     Strapi
+
+# Ressource :
+
+    Développé sous : ubuntu 22.04
+    Lien vidéo
