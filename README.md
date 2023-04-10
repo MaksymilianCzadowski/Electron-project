@@ -22,4 +22,5 @@ Créer une application de chat en temps réel qui permet à des utilisateurs de 
 # Ressource :
 
     Développé sous : ubuntu 22.04
-    Lien vidéo
+    Lien vidéo : 
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.youtube.com/watch?v=HBGiCJKi060)
