@@ -17,7 +17,7 @@ Créer une application de chat en temps réel qui permet à des utilisateurs de 
 
     Electron.js
     React.js
-    Strapi
+    Firebase
 
 # Ressource :
 
